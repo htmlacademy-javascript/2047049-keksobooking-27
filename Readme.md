@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Кирилл Миньков](https://up.htmlacademy.ru/javascript/27/user/2047049).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий (sench) Железцов] (https://htmlacademy.ru/profile/sench).
 
 ---
 
