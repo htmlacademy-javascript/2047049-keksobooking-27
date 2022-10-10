@@ -1,6 +1,6 @@
 // Функция возвращает целое число из диапазона положительных чисел где max всегда >= min.
 
-const getRandomInteger = function (min, max) {
+const getRandomInteger = (min, max) => {
   min = Math.ceil (min);
   max = Math.floor (max);
   if (max <= min || max < 0 || min < 0) {
@@ -11,7 +11,7 @@ const getRandomInteger = function (min, max) {
 
 // Функция возвращает число с указанным количеством знаков после запятой из диапазона положительных чисел где max всегда >= min.
 
-const getRandomFloatNumber = function (min, max, digits) {
+const getRandomFloatNumber = (min, max, digits) => {
   min = Math.ceil (min);
   max = Math.floor (max);
   if (max <= min || max < 0 || min < 0) {
