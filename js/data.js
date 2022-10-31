@@ -39,14 +39,12 @@ const OFFERS_COUNT = 10; // количество сгенированных об
 
 // Функция по созданию аватара заказчика
 const createCustomerAvatar = () => {
-  const avatarCount = getRandomInteger(1, 11);
-  return function () {
-    const AvatarNumber = avatarCount < 10 ? `0${avatarCount}` : 10;
-    return `img/avatars/user${AvatarNumber}.png`;
-  };
+  const avatarCount = getRandomInteger(0, 11);
+  if (!avatarCount) {
+    return 'img/avatars/default.png';
+  }
+  return `img/avatars/user${avatarCount < 10 ? `0${avatarCount}` : 10}.png`;
 };
-
-const getCustomerAvatar = createCustomerAvatar();
 
 // Функция возвращает сгенерированный элемент массива из заданных объектов
 const getOffer = () => {
@@ -55,7 +53,7 @@ const getOffer = () => {
 
   return {
     author: {
-      avatar: getCustomerAvatar(),
+      avatar: createCustomerAvatar(),
     },
     offer: {
       title: 'Удобное укрытие для резервистов 18-55',

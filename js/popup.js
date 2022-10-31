@@ -10,6 +10,15 @@ const offerTypeCollection = {
   palace: 'Дворец',
 };
 
+const absenceInfoCollection = {
+  title: 'Введите заголовок объявления',
+  address: 'Укажите адрес сдаваемого жилья',
+  price:  'Укажите стоимость за ночь',
+  roomsAndGuests: 'Укажите количество комнат и гостей',
+  checkinAndCheckout: 'Укажите время заезда/выезда',
+};
+
+
 // Функция добавляющая фото к шаблону
 const getPhotos = (block, photos, template) => {
   if (photos.length !== 0) {
@@ -58,12 +67,12 @@ const getPopup = (popup) => {
   } = popup;
 
   cardElement.querySelector('.popup__avatar').src = avatar;
-  cardElement.querySelector('.popup__title').textContent = title;
-  cardElement.querySelector('.popup__text--address').textContent = address;
-  cardElement.querySelector('.popup__text--price').textContent = `${price} ₽/ночь`;
+  cardElement.querySelector('.popup__title').textContent = title.length ? title : absenceInfoCollection.title;
+  cardElement.querySelector('.popup__text--address').textContent = address.length ? address : absenceInfoCollection.address;
+  cardElement.querySelector('.popup__text--price').textContent = price ? `${price} ₽/ночь` : absenceInfoCollection.price;
   cardElement.querySelector('.popup__type').textContent = offerTypeCollection[type];
-  cardElement.querySelector('.popup__text--capacity').textContent = `${rooms} комнаты для ${guests} гостей`;
-  cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${checkin}, выезд до ${checkout}`;
+  cardElement.querySelector('.popup__text--capacity').textContent = rooms && guests ? `${rooms} комнаты для ${guests} гостей` : absenceInfoCollection.roomsAndGuests;
+  cardElement.querySelector('.popup__text--time').textContent = checkin && checkout ? `Заезд после ${checkin}, выезд до ${checkout}` : absenceInfoCollection.checkinAndCheckout;
 
   const featuresListParent = cardElement.querySelector('.popup__features');
   const featureList = featuresListParent.querySelectorAll('.popup__feature');
