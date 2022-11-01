@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomFloatNumber, getArrayElement, getSomeArray} from './utils.js';
+import { getRandomInteger, getRandomFloatNumber, getArrayElement, getSomeArray } from './utils.js';
 
 // Объявление переменных
 const TIME = [
@@ -9,7 +9,7 @@ const TIME = [
 
 const HOUSING = [
   'bungalow',
-  'apartaments',
+  'flat',
   'hotel',
   'house',
   'palace',
@@ -38,9 +38,12 @@ const MAX_LNG = 139.80000;
 const OFFERS_COUNT = 10; // количество сгенированных объектов
 
 // Функция по созданию аватара заказчика
-const getCustomerAvatar = (avatarNumber) => {
-  const AvatarNumber = avatarNumber < 10 ? `0${avatarNumber}` : 10;
-  return `img/avatars/user${AvatarNumber}.png`;
+const createCustomerAvatar = () => {
+  const avatarCount = getRandomInteger(0, 11);
+  if (!avatarCount) {
+    return 'img/avatars/default.png';
+  }
+  return `img/avatars/user${avatarCount < 10 ? `0${avatarCount}` : 10}.png`;
 };
 
 // Функция возвращает сгенерированный элемент массива из заданных объектов
@@ -50,7 +53,7 @@ const getOffer = () => {
 
   return {
     author: {
-      avatar: getCustomerAvatar(getRandomInteger(1, 10)),
+      avatar: createCustomerAvatar(),
     },
     offer: {
       title: 'Удобное укрытие для резервистов 18-55',
@@ -73,6 +76,6 @@ const getOffer = () => {
 };
 
 // Функция формирует массив из 10 сгенерированных элементов
-const newOffers = () => Array.from({length: OFFERS_COUNT}, getOffer);
+const newOffers = () => Array.from({ length: OFFERS_COUNT }, getOffer);
 
-export {newOffers};
+export { newOffers };
