@@ -78,4 +78,4 @@ const getOffer = () => {
 // Функция формирует массив из 10 сгенерированных элементов
 const newOffers = () => Array.from({ length: OFFERS_COUNT }, getOffer);
 
-export { newOffers };
+export {newOffers};
