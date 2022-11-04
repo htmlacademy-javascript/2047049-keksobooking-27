@@ -1,6 +1,7 @@
 import {newOffers} from './data.js';
 import {getPopup } from './popup.js';
 import {getInactiveState, getActiveState} from './form.js';
+import {executeValidation} from './validation.js';
 
 const similarCards = newOffers();
 const mapCanvas = document.querySelector('.map__canvas');
@@ -9,3 +10,4 @@ mapCanvas.appendChild(card);
 
 getInactiveState();
 getActiveState();
+executeValidation();
