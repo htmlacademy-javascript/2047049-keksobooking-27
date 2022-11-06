@@ -95,3 +95,4 @@ const getPopup = (popup) => {
 };
 
 export {getPopup};
+export {offerTypeCollection};
