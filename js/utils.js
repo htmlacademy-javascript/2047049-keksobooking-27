@@ -28,4 +28,21 @@ const getSomeArray = (array) => {
   return array.slice(0, someArrayLength);
 };
 
-export{getRandomInteger, getRandomFloatNumber, getArrayElement, getSomeArray};
+const adForm = document.querySelector('.ad-form');
+const pristine = new Pristine(adForm, {
+  classTo: 'ad-form__element',
+  errorClass: 'ad-form__element--invalid',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'span',
+  errorTextClass: 'text-help',
+}, false);
+
+const minPriceCollection = {
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000,
+};
+
+export{getRandomInteger, getRandomFloatNumber, getArrayElement, getSomeArray, pristine, adForm, minPriceCollection};
