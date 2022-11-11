@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./vendor/nouislider/nouislider.css">
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
   <title>Кексобукинг</title>
 </head>
 
@@ -98,14 +100,13 @@
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
           <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" minlength="30"
-            maxlength="100" required
-            data-pristine-minlength-message="Минимальная длина заголовка - 30 символов"
+            maxlength="100" required data-pristine-minlength-message="Минимальная длина заголовка - 30 символов"
             data-pristine-maxlength-message="Максимальна длина заголовка - 100 символов"
             data-pristine-required-message="Обязательное к заполнению поле">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text">
+          <input id="address" name="address" type="text" readonly required>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -120,8 +121,8 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
           <input id="price" name="price" type="number" placeholder="5000" min="0" max="100000" step="1000" required
-          data-pristine-max-message="Максимальная цена - 100000 руб."
-          data-pristine-required-message="Обязательное к заполнению поле">
+            data-pristine-max-message="Максимальная цена - 100000 руб."
+            data-pristine-required-message="Обязательное к заполнению поле">
           <div class="ad-form__slider"></div>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
@@ -255,6 +256,8 @@
     </div>
   </template>
   <script src="vendor/pristine/pristine.min.js"></script>
+  <script src="./vendor/nouislider/nouislider.js"></script>
+  <script src="./vendor/leaflet/leaflet.js"></script>
   <script src="js/main.js" type="module"></script>
 </body>
 
