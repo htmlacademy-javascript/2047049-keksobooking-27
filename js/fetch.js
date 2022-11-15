@@ -1,6 +1,7 @@
 // Функции осуществляющие взамодействие с сервером по средством fetch()
+const SERVER_URL = 'https://27.javascript.pages.academy/keksobooking';
 const getData = (onSuccess, onFail) => {
-  fetch('https://27.javascript.pages.academy/keksobooking/data')
+  fetch(`${SERVER_URL}/data`)
     .then((response) => response.json())
     .then((ads) => onSuccess(ads))
     .catch(onFail);
@@ -8,7 +9,7 @@ const getData = (onSuccess, onFail) => {
 
 const postData = (onSuccess, onFail, body) => {
   fetch(
-    'https://27.javascript.pages.academy/keksobooking',
+    SERVER_URL,
     {
       method: 'POST',
       body,
