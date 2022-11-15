@@ -89,7 +89,10 @@ const executeMap = () => {
 const resetMapState = () => {
   map.setView([TOKIO_LAT, TOKIO_LNG]);
   mainMarker.setLatLng([TOKIO_LAT, TOKIO_LNG]);
-  address.value = defaultAddress; // Тут не могу понять. При нажатии "Очистить". Стирается поле адреса.
+
+  setTimeout(() => {
+    address.value = defaultAddress;
+  }, 1); //отследил, что присваивание дефолтного значения происходит, но тут же стирается. Через задержку вроде работает.
 };
 
 export {executeMap, resetMapState};
