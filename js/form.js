@@ -19,9 +19,13 @@ const getInactiveState = () => {
 //Функция вводит в активное состояние страницы
 const getActiveState = () => {
   adForm.classList.remove('ad-form--disabled');
-  mapFilter.classList.remove('map__filters--disabled');
   stateToggler(adFormElements, false);
+};
+
+// Функция активирует фильтры
+const getActiveFilters = () => {
+  mapFilter.classList.remove('map__filters--disabled');
   stateToggler(mapFilterInputs, false);
 };
 
-export {getInactiveState, getActiveState};
+export {getInactiveState, getActiveState, getActiveFilters};

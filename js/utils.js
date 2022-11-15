@@ -28,6 +28,7 @@ const getSomeArray = (array) => {
   return array.slice(0, someArrayLength);
 };
 
+// Объявление функции валидации форм с использованием сторонней API Pristine
 const adForm = document.querySelector('.ad-form');
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',

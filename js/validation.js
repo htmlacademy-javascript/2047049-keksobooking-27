@@ -1,5 +1,9 @@
 import {offerTypeCollection} from './popup.js';
 import {pristine, adForm, minPriceCollection} from './utils.js';
+import {showSuccessMessage, showErrorMessage} from './notifications.js';
+import {resetMapState} from './map.js';
+import {resetForm} from './reset-button.js';
+import {postData} from './fetch.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -26,17 +30,26 @@ const validateTitle = () => titleElement.value.length >= MIN_TITLE_LENGTH && tit
 const validatePrice = () => priceElement.value >= minPriceCollection[typeElement.value] && priceElement.value <= MAX_NIGHT_PRICE;
 const validateComparison = () => roomsToPersonsComparison[roomsElement.value].includes(capacityElement.value);
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-};
-
 const onTypeChange = () => {
   priceElement.min = minPriceCollection[typeElement.value];
   priceElement.placeholder = minPriceCollection[typeElement.value];
   pristine.validate(priceElement);
 };
 const showPriceError = () => `Минимальная стоимость для ${offerTypeCollection[typeElement.value]} - ${minPriceCollection[typeElement.value]} руб.`;
+
+const onPostData = () => {
+  showSuccessMessage();
+  resetMapState();
+  resetForm();
+};
+
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+  const isValidationTrue = pristine.validate();
+  if (isValidationTrue) {
+    postData(onPostData, showErrorMessage, new FormData(adForm));
+  }
+};
 
 //Функция вызывает валидацию формы
 const executeValidation = () => {
@@ -57,4 +70,4 @@ const executeValidation = () => {
   addressElement.readOnly = true;
 };
 
-export {executeValidation, priceElement};
+export {executeValidation, priceElement, typeElement};
