@@ -1,5 +1,5 @@
-import {adForm, pristine} from './utils.js';
-import {priceElement} from './validation.js';
+import {adForm, pristine, minPriceCollection} from './utils.js';
+import {priceElement, typeElement} from './validation.js';
 
 const sliderElement = adForm.querySelector('.ad-form__slider');
 const getSlider = () => {
@@ -8,7 +8,7 @@ const getSlider = () => {
       min: 0,
       max: 100000,
     },
-    start: 0,
+    start: minPriceCollection[typeElement.value],
     step: 1000,
     connect: 'lower',
     format: {
@@ -25,11 +25,12 @@ const onSliderChange = () => {
 const executeSlider = () => {
   getSlider();
   priceElement.addEventListener('change', onSliderChange);
-
   sliderElement.noUiSlider.on('update', () => {
     priceElement.value = sliderElement.noUiSlider.get();
     pristine.validate(priceElement);
   });
 };
 
-export {executeSlider};
+const resetSlider = () => sliderElement.noUiSlider.reset();
+
+export {executeSlider, sliderElement, resetSlider};

@@ -21,7 +21,7 @@ const absenceInfoCollection = {
 
 // Функция добавляющая фото к шаблону
 const getPhotos = (block, photos, template) => {
-  if (photos.length !== 0) {
+  if (photos && photos.length !== 0) {
     photos.forEach((photo) => {
       const imageElement = template.cloneNode(true);
       imageElement.src = photo;
@@ -34,7 +34,7 @@ const getPhotos = (block, photos, template) => {
 
 // Функция добавляющая features к шаблону
 const getFeatures = (featureList, featuresArray, featuresListParent) => {
-  if (featuresArray.length !== 0) {
+  if (featuresArray && featuresArray.length !== 0) {
     featureList.forEach((featureListItem) => {
       const isNecessary = featuresArray.some((feature) => featureListItem.classList.contains(`popup__feature--${feature}`));
       if (!isNecessary) {
@@ -80,7 +80,7 @@ const getPopup = (popup) => {
   const popupPhotoTemplate = popupPhotosElement.querySelector('.popup__photo');
   const descriptionItem = cardElement.querySelector('.popup__description');
 
-  if (description.length !== 0) {
+  if (description && description.length !== 0) {
     descriptionItem.textContent = description;
   } else {
     descriptionItem.remove();
@@ -94,5 +94,5 @@ const getPopup = (popup) => {
   return cardElement;
 };
 
-export {getPopup};
-export {offerTypeCollection};
+export {getPopup, offerTypeCollection};
+
