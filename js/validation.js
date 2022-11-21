@@ -4,6 +4,7 @@ import {showSuccessMessage, showErrorMessage} from './notifications.js';
 import {resetMapState} from './map.js';
 import {resetForm} from './reset-button.js';
 import {postData} from './fetch.js';
+import {resetFilters} from './filtration.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -16,6 +17,7 @@ const typeElement = adForm.querySelector('#type');
 const checkInElement = adForm.querySelector('#timein');
 const checkOutElement = adForm.querySelector('#timeout');
 const addressElement = adForm.querySelector('#address');
+const submitElement = adForm.querySelector('.ad-form__submit');
 
 const roomsToPersonsComparison = {
   1: ['1'],
@@ -37,17 +39,31 @@ const onTypeChange = () => {
 };
 const showPriceError = () => `Минимальная стоимость для ${offerTypeCollection[typeElement.value]} - ${minPriceCollection[typeElement.value]} руб.`;
 
+const inactiveSubmitElement = () => {
+  submitElement.disabled = true;
+  submitElement.textContent = 'Опубликовано';
+};
+
+const activeSubmitElement = () => {
+  submitElement.disabled = false;
+  submitElement.textContent = 'Опубликовать';
+};
+
 const onPostData = () => {
   showSuccessMessage();
   resetMapState();
   resetForm();
+  resetFilters();
+  activeSubmitElement();
 };
+
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
   const isValidationTrue = pristine.validate();
   if (isValidationTrue) {
-    postData(onPostData, showErrorMessage, new FormData(adForm));
+    postData(onPostData, () => {showErrorMessage(); activeSubmitElement();}, new FormData(adForm));
+    inactiveSubmitElement();
   }
 };
 
