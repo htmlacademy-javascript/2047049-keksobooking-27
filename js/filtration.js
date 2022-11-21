@@ -1,15 +1,8 @@
 import {getMarkers, resetMarkers, OFFERS_COUNT} from './map.js';
 import {debounce} from './utils.js';
 
-const filterElements = document.querySelector('.map__filters');
-const filterTypeElement = filterElements.querySelector('#housing-type');
-const filterPriceElement = filterElements.querySelector('#housing-price');
-const filterRoomsElement = filterElements.querySelector('#housing-rooms');
-const filterGuestElement = filterElements.querySelector('#housing-guests');
-const filterFeaturesElement = filterElements.querySelector('#housing-features');
 const REFRESH_DELAY = 500;
 const MAX_NIGHT_PRICE = 100000;
-
 const OFFERS_PRICE = {
   LOW: {
     MIN: 0,
@@ -24,6 +17,13 @@ const OFFERS_PRICE = {
     MAX: MAX_NIGHT_PRICE,
   },
 };
+
+const filterElements = document.querySelector('.map__filters');
+const filterTypeElement = filterElements.querySelector('#housing-type');
+const filterPriceElement = filterElements.querySelector('#housing-price');
+const filterRoomsElement = filterElements.querySelector('#housing-rooms');
+const filterGuestElement = filterElements.querySelector('#housing-guests');
+const filterFeaturesElement = filterElements.querySelector('#housing-features');
 
 //тип
 const sortByType = (card) => filterTypeElement.value === 'any' || filterTypeElement.value === card.offer.type;
