@@ -1,14 +1,3 @@
-// Функция возвращает целое число из диапазона положительных чисел где max всегда >= min.
-
-const getRandomInteger = (min, max) => {
-  min = Math.ceil (min);
-  max = Math.floor (max);
-  if (max <= min || max < 0 || min < 0) {
-    return NaN;
-  }
-  return Math.floor((Math.random() * (max - min + 1)) + min);
-}; //Эта вроде тоже нигде не используется. Если в следующем задании не понадобится - готов удалить.
-
 // Объявление функции валидации форм с использованием сторонней API Pristine
 const adForm = document.querySelector('.ad-form');
 const pristine = new Pristine(adForm, {
@@ -27,4 +16,12 @@ const minPriceCollection = {
   palace: 10000,
 };
 
-export{getRandomInteger, pristine, adForm, minPriceCollection};
+const debounce = (cb, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => cb.apply(this, rest), timeoutDelay);
+  };
+};
+
+export{pristine, adForm, minPriceCollection, debounce};

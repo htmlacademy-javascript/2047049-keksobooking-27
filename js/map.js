@@ -2,6 +2,7 @@ import {getActiveState, getActiveFilters} from './form.js';
 import {getPopup} from './popup.js';
 import {getData} from './fetch.js';
 import {showAlert } from './notifications.js';
+import {onFilterElementsChange} from './filtration.js';
 
 const TOKIO_LAT = 35.68950;
 const TOKIO_LNG = 139.69171;
@@ -12,6 +13,8 @@ const TILELAYER_ATTRIBUTION = '&copy; <a href="http://www.openstreetmap.org/copy
 const address = document.querySelector('#address');
 const map = L.map('map-canvas');
 const OFFERS_COUNT = 10;
+const markersSet = L.layerGroup().addTo(map);
+const resetMarkers = () => markersSet.clearLayers();
 
 L.tileLayer(TILELAYER_URL, {
   maxZoom: MAX_ZOOM,
@@ -46,12 +49,12 @@ address.value = defaultAddress;
 
 
 const onMarkerMove = (evt) => {
-  const { lat, lng } = evt.target.getLatLng();
+  const {lat, lng} = evt.target.getLatLng();
   address.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 };
 
-const renderMarkers = (advertisements) => {
-  advertisements.forEach((element) => {
+const getMarkers = (cards) => {
+  cards.forEach((element) => {
     const marker = L.marker(
       {
         lat: element.location.lat,
@@ -62,13 +65,14 @@ const renderMarkers = (advertisements) => {
       },
     );
     marker
-      .addTo(map)
+      .addTo(markersSet)
       .bindPopup(getPopup(element));
   });
 };
 
 const isDataExist = (cards) => {
-  renderMarkers(cards.slice(0, OFFERS_COUNT));
+  onFilterElementsChange(cards);
+  getMarkers(cards.slice(0, OFFERS_COUNT));
   getActiveFilters();
 };
 
@@ -89,10 +93,10 @@ const executeMap = () => {
 const resetMapState = () => {
   map.setView([TOKIO_LAT, TOKIO_LNG]);
   mainMarker.setLatLng([TOKIO_LAT, TOKIO_LNG]);
-
+  map.closePopup();
   setTimeout(() => {
     address.value = defaultAddress;
-  }, 1); //отследил, что присваивание дефолтного значения происходит, но тут же стирается. Через задержку вроде работает.
+  }, 1);
 };
 
-export {executeMap, resetMapState};
+export {executeMap, resetMapState, resetMarkers, getMarkers, OFFERS_COUNT};

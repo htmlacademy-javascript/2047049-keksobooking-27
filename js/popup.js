@@ -11,11 +11,11 @@ const offerTypeCollection = {
 };
 
 const absenceInfoCollection = {
-  title: 'Введите заголовок объявления',
-  address: 'Укажите адрес сдаваемого жилья',
-  price:  'Укажите стоимость за ночь',
-  roomsAndGuests: 'Укажите количество комнат и гостей',
-  checkinAndCheckout: 'Укажите время заезда/выезда',
+  title: '',
+  address: '',
+  price:  '',
+  roomsAndGuests: '',
+  checkinAndCheckout: '',
 };
 
 
