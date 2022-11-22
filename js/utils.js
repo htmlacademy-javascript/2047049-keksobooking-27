@@ -1,3 +1,5 @@
+const TIMEOUT_DELAY = 500;
+
 // Объявление функции валидации форм с использованием сторонней API Pristine
 const adForm = document.querySelector('.ad-form');
 const pristine = new Pristine(adForm, {
@@ -16,11 +18,11 @@ const minPriceCollection = {
   palace: 10000,
 };
 
-const debounce = (cb, timeoutDelay = 500) => {
+const debounce = (cb) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => cb.apply(this, rest), timeoutDelay);
+    timeoutId = setTimeout(() => cb.apply(this, rest), TIMEOUT_DELAY);
   };
 };
 

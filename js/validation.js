@@ -4,7 +4,7 @@ import {showSuccessMessage, showErrorMessage} from './notifications.js';
 import {resetMapState} from './map.js';
 import {resetForm} from './reset-button.js';
 import {postData} from './fetch.js';
-import {resetFilters} from './filtration.js';
+import {filterElements} from './filtration.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -53,8 +53,8 @@ const onPostData = () => {
   showSuccessMessage();
   resetMapState();
   resetForm();
-  resetFilters();
   activeSubmitElement();
+  filterElements.reset();
 };
 
 
