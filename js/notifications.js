@@ -1,3 +1,4 @@
+const ALERT_DELAY = 5000;
 const successTemplate = document.querySelector('#success')
   .content
   .querySelector('.success');
@@ -42,7 +43,7 @@ const showAlert = () => {
   document.body.appendChild(alertContainerElement);
   setTimeout(() => {
     alertContainerElement.remove();
-  }, 5000);
+  }, ALERT_DELAY);
 };
 
 export {showSuccessMessage, showErrorMessage, showAlert};
